@@ -1,0 +1,35 @@
+#include "charmm36-jul2022.ff//forcefield.itp"
+
+; Include ligand parameters
+#include "jz4.prm"
+
+; Include ligand topology
+#include "jz4.itp"
+
+; Ligand position restraints
+#ifdef POSRES
+#include "posre_jz4.itp"
+#endif
+
+; Include water topology
+#include "charmm36-jul2022.ff/tip3p.itp"
+
+#ifdef POSRES_WATER
+; Position restraint for each water oxygen
+[ position_restraints ]
+;  i funct		 fcx		fcy		   fcz
+   1	1		1000	   1000		  1000
+#endif
+
+
+; Include topology for ions
+#include "charmm36-jul2022.ff//ions.itp"
+
+[ system ]
+JZ4 in water
+
+[ molecules ]
+; Compound		  #mols
+JZ4			1
+
+SOL              1669

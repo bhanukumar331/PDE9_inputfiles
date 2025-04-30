@@ -1,0 +1,72 @@
+;
+;	File 'topol.top' was generated
+;	By user: csirihbt (1000)
+;	On host: csir-ihbt
+;	At date: Mon Apr 10 16:26:06 2023
+;
+;	This is a standalone topology file
+;
+;	Created by:
+;	                    :-) GROMACS - gmx pdb2gmx, 2020.5 (-:
+;	
+;	Executable:   /usr/local/gromacs/bin/gmx
+;	Data prefix:  /usr/local/gromacs
+;	Working dir:  /home/csirihbt/Downloads/3DYN_INHIBITORS/3DYN_4Y86_49D
+;	Command line:
+;	  gmx pdb2gmx -f clear.pdb -o 3HTB_processed.gro -ignh -missing
+;	Force field was read from current directory or a relative path - path added.
+;
+
+; Include forcefield parameters
+#include "./charmm36-jul2022.ff/forcefield.itp"
+
+; Include ligand parameters
+#include "jz4.prm"
+
+; Include chain topologies
+#include "topol_Protein_chain_A.itp"
+#include "topol_Ion_chain_A2.itp"
+
+
+; Include ligand topology
+#include "jz4.itp"
+
+
+; Include water topology
+#include "./charmm36-jul2022.ff/tip3p.itp"
+
+#ifdef POSRES_WATER
+; Position restraint for each water oxygen
+[ position_restraints ]
+;  i funct       fcx        fcy        fcz
+   1    1       1000       1000       1000
+#endif
+
+; Include topology for ions
+#include "./charmm36-jul2022.ff/ions.itp"
+
+[ system ]
+; Name
+Protein in water
+
+[ molecules ]
+; Compound        #mols
+Protein_chain_A     1
+Ion_chain_A2        1
+JZ4		    1
+SOL         22898
+NA               13
+
+[ intermolecular_interactions ]
+[ bonds ]
+;    ai   aj    type  bA         kA       bB    kB
+  5356  3009    6     0.703      0.0    0.703   4184.00
+[ angles ]
+;   ai    aj    ak    type    thA      fcA      thB       fcB
+  5357  5356  3009       1   74.606    0.0   74.606     41.84
+  5356  3009  3017       1   85.233    0.0   85.233     41.84
+[ dihedrals ]
+;   ai    aj    ak    al  type    phiA      fcA    phiB      fcB
+  5358  5357  5356  3009     2    -175.692    0.0    -175.692    41.84
+  5357  5356  3009  3017     2    -30.300    0.0    -30.300    41.84
+  5356  3009  3017  3019     2    52.942    0.0    52.942    41.84
