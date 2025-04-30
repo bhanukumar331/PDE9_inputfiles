@@ -1,0 +1,35 @@
+;
+;	File 'topol_Ion_chain_A2.itp' was generated
+;	By user: user (1000)
+;	On host: user
+;	At date: Tue Mar 25 14:54:03 2025
+;
+;	This is a include topology file
+;
+;	Created by:
+;	                    :-) GROMACS - gmx pdb2gmx, 2020.5 (-:
+;	
+;	Executable:   /usr/local/gromacs/bin/gmx
+;	Data prefix:  /usr/local/gromacs
+;	Working dir:  /home/user/Desktop/3DYN_NEW/SMD/3DYN-AMKPD204
+;	Command line:
+;	  gmx pdb2gmx -f clear.pdb -ignh -ter -o complex.gro -missing
+;	Force field was read from current directory or a relative path - path added.
+;
+
+[ moleculetype ]
+; Name            nrexcl
+Ion_chain_A2        3
+
+[ atoms ]
+;   nr       type  resnr residue  atom   cgnr     charge       mass  typeB    chargeB      massB
+; residue 901 ZN  rtp ZN   q +2.0
+     1         ZN    901     ZN     ZN      1          2      65.37   ; qtot 2
+; residue 902 MG  rtp MG   q +2.0
+     2         MG    902     MG     MG      2          2     24.305   ; qtot 4
+
+; Include Position restraint file
+#ifdef POSRES
+#include "posre_Ion_chain_A2.itp"
+#endif
+
